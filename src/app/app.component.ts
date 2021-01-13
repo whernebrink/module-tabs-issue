@@ -3,34 +3,50 @@ import {
   HostBinding,
   ViewEncapsulation,
   ViewChild,
-  AfterViewInit
-} from '@angular/core';
+  AfterViewInit,
+} from "@angular/core";
 
 import {
   SohoPersonalizeDirective,
   SohoRenderLoopService,
-  SohoApplicationMenuComponent
-} from 'ids-enterprise-ng';
+  SohoApplicationMenuComponent,
+} from "ids-enterprise-ng";
+import {
+  AppMenuSection,
+  AppMenuSectionItem,
+} from "./app-menu-section/app-menu-section.component";
 
 @Component({
-  selector: 'body', // eslint-disable-line
-  templateUrl: 'app.component.html',
-  styleUrls: [ './app.component.css' ],
-  encapsulation: ViewEncapsulation.None
+  selector: "body", // eslint-disable-line
+  templateUrl: "app.component.html",
+  styleUrls: ["./app.component.css"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements AfterViewInit {
-
+  menuSection: AppMenuSection = {
+    header: "Some Section",
+    items: [
+      { header: "Admin", link: "admin" },
+      { header: "Dashboard", link: "dashboard" },
+    ],
+  };
+  onMenuItemClicked(item: AppMenuSectionItem): void {
+    console.log("Menu item clicked!", item);
+  }
   /**
    * Local Storage Key
    */
-  private static isMenuOpen = 'is-application-menu-open';
+  private static isMenuOpen = "is-application-menu-open";
 
   @ViewChild(SohoApplicationMenuComponent, { static: true })
   public applicationMenu!: SohoApplicationMenuComponent;
 
-  @ViewChild(SohoPersonalizeDirective, { static: true }) personalize?: SohoPersonalizeDirective;
+  @ViewChild(SohoPersonalizeDirective, { static: true })
+  personalize?: SohoPersonalizeDirective;
 
-  @HostBinding('class.no-scroll') get isNoScroll() { return true; }
+  @HostBinding("class.no-scroll") get isNoScroll() {
+    return true;
+  }
 
   /**
    * Include the uplift icons only if required by the current theme, this
@@ -48,7 +64,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
     /**
      * Note: If using an input like [triggers]="[ '.application-menu-trigger' ]"
      * hookup the app menu trigger once the afterViewInit is called. This will
@@ -65,17 +80,18 @@ export class AppComponent implements AfterViewInit {
 
   public get isApplicationMenuOpen(): boolean {
     const valueString = localStorage.getItem(AppComponent.isMenuOpen);
-    return valueString ? (valueString === 'true') : true;
+    return valueString ? valueString === "true" : true;
   }
 
   public set isApplicationMenuOpen(open: boolean) {
-    localStorage.setItem(AppComponent.isMenuOpen, open ? 'true' : 'false');
+    localStorage.setItem(AppComponent.isMenuOpen, open ? "true" : "false");
   }
 
   onChangeTheme(ev: SohoPersonalizeEvent) {
-    this.useUpliftIcons = ev.data.theme === 'theme-uplift-light'
-      || ev.data.theme === 'theme-uplift-dark'
-      || ev.data.theme === 'theme-uplift-contrast';
+    this.useUpliftIcons =
+      ev.data.theme === "theme-uplift-light" ||
+      ev.data.theme === "theme-uplift-dark" ||
+      ev.data.theme === "theme-uplift-contrast";
   }
 
   public onMenuVisibility(visible: boolean): void {

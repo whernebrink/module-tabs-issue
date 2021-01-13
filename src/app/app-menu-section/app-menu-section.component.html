@@ -1,0 +1,9 @@
+<soho-accordion-header [isExpanded]="true">
+  {{section.header}}
+</soho-accordion-header>
+<soho-accordion-pane>
+  <soho-accordion-header *ngFor="let item of section.items"
+                         (click)="clicked.emit(item)">
+    {{item.header}}
+  </soho-accordion-header>
+</soho-accordion-pane>

@@ -1,0 +1,48 @@
+<div soho-tabs
+     [moduleTabs]="true"
+     [tabsOptions]="tabOptions"
+     [beforeCloseCallback]="beforeCloseCallback">
+  <div soho-tab-list-container>
+    <ul soho-tab-list>
+      <li soho-tab
+          [dismissible]="true"
+          *ngFor="let tab of tabItems$ | async">
+        <a soho-tab-title
+           [tabId]="tab?.id">
+          {{ tab?.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-container *ngIf="!hasTabItems; then startPage; else tabPanels">
+</ng-container>
+
+
+<ng-template #startPage>
+  <div soho-tab-panel-container>
+    <div soho-tab-panel
+         [style.padding]="'2rem'"
+         class="tab-panel is-visible can-show">
+      <h1>Start Page</h1>
+      <p>Will be shown if no tabs are opened...</p>
+
+      <button soho-button="primary"
+              (click)="addTab()">Add a tab</button>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tabPanels>
+  <div soho-tab-panel-container>
+    <div class="m3-tabs__panel"
+         soho-tab-panel
+         *ngFor="let tab of tabItems$ | async"
+         [tabId]="tab.id">
+      <p>Dynamic components will be loaded here...</p>
+    </div>
+  </div>
+</ng-template>
+

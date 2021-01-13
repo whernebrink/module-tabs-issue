@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
-import { LOCALE_ID, Inject, Injectable } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
+import { LOCALE_ID, Inject, Injectable } from "@angular/core";
+import { APP_BASE_HREF } from "@angular/common";
 
 export interface Translation {
   id: string;
@@ -14,7 +14,7 @@ export interface Translation {
  * will be automatically added.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SohoLocaleInitializerService {
   /**
@@ -25,9 +25,10 @@ export class SohoLocaleInitializerService {
    */
   constructor(
     @Inject(LOCALE_ID) private readonly locale: string,
-    @Inject(APP_BASE_HREF) private readonly baseHref: string) {
-      console.log(`locale=${locale}, baseHref=${baseHref}`);
-    }
+    @Inject(APP_BASE_HREF) private readonly baseHref: string
+  ) {
+    console.log(`locale=${locale}, baseHref=${baseHref}`);
+  }
 
   /**
    * Initializes the locale for this web application.
@@ -46,20 +47,22 @@ export class SohoLocaleInitializerService {
       // call to the backend.
       const translations: Translation[] = []; // <-- set this to the additional translations
       translations.push({
-        id: 'QuickStartButtonText',
-        value: 'Click Me!',
-        comment: ''
+        id: "QuickStartButtonText",
+        value: "Click Me!",
+        comment: "",
       });
 
       Soho.Locale.extendTranslations(currentLanguageName, translations);
 
-      console.log('Enterprise Locale Initialised.');
+      console.log("Enterprise Locale Initialised.");
     });
   }
 }
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function SohoLocaleInitializerFactory(service: SohoLocaleInitializerService) {
-    return () => service.initialize();
+export function SohoLocaleInitializerFactory(
+  service: SohoLocaleInitializerService
+) {
+  return () => service.initialize();
 }

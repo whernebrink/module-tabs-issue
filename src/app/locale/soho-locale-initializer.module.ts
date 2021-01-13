@@ -1,9 +1,9 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { CommonModule, PlatformLocation, APP_BASE_HREF } from '@angular/common';
+import { NgModule, APP_INITIALIZER } from "@angular/core";
+import { CommonModule, PlatformLocation, APP_BASE_HREF } from "@angular/common";
 import {
   SohoLocaleInitializerFactory,
-  SohoLocaleInitializerService
-} from './soho-locale-initializer.service';
+  SohoLocaleInitializerService,
+} from "./soho-locale-initializer.service";
 
 /**
  * This function is used internally to get a string instance of the `<base href="" />` value from `index.html`.
@@ -29,13 +29,13 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
       provide: APP_INITIALIZER,
       useFactory: SohoLocaleInitializerFactory,
       deps: [SohoLocaleInitializerService],
-      multi: true
+      multi: true,
     },
     {
       provide: APP_BASE_HREF,
       useFactory: getBaseHref,
-      deps: [PlatformLocation]
-    }
-  ]
+      deps: [PlatformLocation],
+    },
+  ],
 })
 export class SohoLocaleInitializerModule {}
