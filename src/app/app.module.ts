@@ -11,9 +11,15 @@ import { AppComponent } from "./app.component";
 import { SohoLocaleInitializerModule } from "./locale/soho-locale-initializer.module";
 import { TabsComponent } from "./tabs/tabs.component";
 import { AppMenuSectionComponent } from "./app-menu-section/app-menu-section.component";
+import { SpyDirective } from "./directives/spy.directive";
 
 @NgModule({
-  declarations: [AppComponent, TabsComponent, AppMenuSectionComponent],
+  declarations: [
+    AppComponent,
+    TabsComponent,
+    AppMenuSectionComponent,
+    SpyDirective,
+  ],
   imports: [
     BrowserModule,
     SohoLocaleModule,

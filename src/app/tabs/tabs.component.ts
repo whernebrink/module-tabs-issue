@@ -14,7 +14,8 @@ interface TabItem {
 })
 export class TabsComponent {
   tabOptions = {
-    // appMenuTrigger: true,
+    appMenuTrigger: true,
+    // appMenuTriggerText: " ",
     // appMenuTriggerTextAudible: true,
   };
 

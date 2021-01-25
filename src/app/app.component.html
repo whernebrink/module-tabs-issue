@@ -13,7 +13,8 @@
      [filterable]="true"
      [openOnLarge]="true"
      [dismissOnClickMobile]="true"
-     (menuVisibility)="onMenuVisibility($event)">
+     (menuVisibility)="onMenuVisibility($event)"
+     appSpy="soho-application-menu">
   <div soho-searchfield-wrapper>
     <label class="audible"
            for="application-menu-searchfield">Search</label>
@@ -31,9 +32,8 @@
   <div id="maincontent"
        class="page-container scrollable"
        role="main">
-    <app-tabs></app-tabs>
+    <app-tabs appSpy="app-tabs"></app-tabs>
   </div>
 </div>
 <div soho-personalize
      (changetheme)="onChangeTheme($event)"></div>
-

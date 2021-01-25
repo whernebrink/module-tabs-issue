@@ -1,12 +1,15 @@
 <div soho-tabs
      [moduleTabs]="true"
      [tabsOptions]="tabOptions"
-     [beforeCloseCallback]="beforeCloseCallback">
-  <div soho-tab-list-container>
+     [beforeCloseCallback]="beforeCloseCallback"
+     appSpy="soho-tabs">
+  <div soho-tab-list-container
+       appSpy="soho-tab-list-container">
     <ul soho-tab-list>
       <li soho-tab
           [dismissible]="true"
-          *ngFor="let tab of tabItems$ | async">
+          *ngFor="let tab of tabItems$ | async"
+          appSpy="soho-tab">
         <a soho-tab-title
            [tabId]="tab?.id">
           {{ tab?.title }}
@@ -45,4 +48,3 @@
     </div>
   </div>
 </ng-template>
-
