@@ -16,7 +16,7 @@ export class TabsComponent {
   tabOptions = {
     appMenuTrigger: true,
     // appMenuTriggerText: " ",
-    // appMenuTriggerTextAudible: true,
+    appMenuTriggerTextAudible: true,
   };
 
   private tabItems: TabItem[] = [];
